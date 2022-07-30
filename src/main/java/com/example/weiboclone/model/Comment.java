@@ -10,7 +10,7 @@ import javax.persistence.*;
 @DynamicUpdate
 @Data
 @Entity
-public class Comment {
+public class Comment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
