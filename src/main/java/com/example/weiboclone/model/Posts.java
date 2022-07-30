@@ -12,7 +12,7 @@ import java.util.List;
 @DynamicUpdate
 @Data
 @Entity
-public class Posts {
+public class Posts extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

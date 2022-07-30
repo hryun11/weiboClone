@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @DynamicUpdate
 @Entity
-public class Users{
+public class Users extends BaseEntity {
     @Id  //ID 할당 방법 1.직접 넣는 방식 (Setter, 생성자) 2.(JPA나)DB에게 할당 책임을 전가. (@GenerateValue)
     @GeneratedValue(strategy = GenerationType.IDENTITY) // mysql 은 identity. auto는 안 맞을 경우도 있어.
     private Long id;
