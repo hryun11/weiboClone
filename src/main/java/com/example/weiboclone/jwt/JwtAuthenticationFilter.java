@@ -8,7 +8,7 @@ package com.example.weiboclone.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.weiboclone.jwt.config.auth.PrincipalDetails;
-import com.example.weiboclone.jwt.model.Users;
+import com.example.weiboclone.model.Users;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

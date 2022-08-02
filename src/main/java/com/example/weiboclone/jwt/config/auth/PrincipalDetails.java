@@ -1,12 +1,10 @@
 package com.example.weiboclone.jwt.config.auth;
 
-import com.example.weiboclone.jwt.model.Users;
+import com.example.weiboclone.model.Users;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 

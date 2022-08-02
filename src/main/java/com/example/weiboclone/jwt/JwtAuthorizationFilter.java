@@ -3,12 +3,11 @@ package com.example.weiboclone.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.weiboclone.jwt.config.auth.PrincipalDetails;
-import com.example.weiboclone.jwt.model.Users;
-import com.example.weiboclone.jwt.repository.UsersRepository;
+import com.example.weiboclone.model.Users;
+import com.example.weiboclone.repository.UsersRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -53,7 +52,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         // 서명이 정상적으로 됨
         if (username != null) {
 
-            Users usersEntity = usersRepository.findByUsername(username);
+            Users usersEntity = usersRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("없는 회원입니다."));
 
             PrincipalDetails principalDetails = new PrincipalDetails(usersEntity);
 
