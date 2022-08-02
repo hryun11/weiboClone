@@ -14,9 +14,8 @@ public class CommentsResponseDto {
     private String userprofileimage;
     private String contents;
 
-    public CommentsResponseDto(String username, String userprofileimage, String contents) {
-        this.username = username;
-        this.userprofileimage = userprofileimage;
-        this.contents = contents;
+    public CommentsResponseDto(String Contents, Long postid) {
+        this.contents = Contents;
+        this.id = postid;
     }
 }

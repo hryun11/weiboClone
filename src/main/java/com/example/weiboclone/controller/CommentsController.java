@@ -23,8 +23,8 @@ public class CommentsController {
     }
 
     // 댓글 작성
-    @PostMapping("/api/post/{postid}/comment")
-    public CommentsResponseDto createComments(@PathVariable Long postid, @RequestBody CommentsRequestsDto requestsDto) {
-        return commentsService.createComments(postid, requestsDto);
-    }
+//    @PostMapping("/api/post/{postid}/comment")
+//    public CommentsResponseDto createComments(@PathVariable Long postid, @RequestBody CommentsRequestsDto requestsDto) {
+//        return commentsService.createComments(postid, requestsDto);
+//    }
 }

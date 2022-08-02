@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @DynamicUpdate
@@ -30,6 +31,9 @@ public class Comment extends BaseEntity {
 
     @Column
     private String contents;
+
+    @Column
+    private LocalDateTime createdAt;
 
     public Comment(CommentsRequestsDto requestsDto, Posts posts) {
         this.contents = requestsDto.getContents();

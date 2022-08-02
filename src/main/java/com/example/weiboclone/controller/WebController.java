@@ -1,6 +1,7 @@
 package com.example.weiboclone.controller;
 
-import com.example.weiboclone.security.S3Uploader;
+
+import com.example.weiboclone.service.S3Uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
