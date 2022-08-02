@@ -37,5 +37,4 @@ public abstract class BaseEntity {
     @Column(insertable = false)
     @LastModifiedBy
     private Long updatedBy;
-
 }
