@@ -2,6 +2,7 @@ package com.example.weiboclone.controller;
 
 import com.example.weiboclone.dto.PostRequestDto;
 import com.example.weiboclone.dto.PostResponseDto;
+import com.example.weiboclone.jwt.config.auth.PrincipalDetails;
 import com.example.weiboclone.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
@@ -27,8 +28,8 @@ public class PostController {
 
     // 게시글 작성
     @PostMapping("/api/post")
-    public ResponseEntity<Void> createPost(PostRequestDto requestDto,
-                                           @AuthenticationPrincipal UserDetails userDetails) throws IOException {
+    public ResponseEntity<Void> createPost(@RequestBody PostRequestDto requestDto,
+                                           @AuthenticationPrincipal PrincipalDetails userDetails) throws IOException {
 
         postService.createPost(userDetails.getUsername(), requestDto);
 

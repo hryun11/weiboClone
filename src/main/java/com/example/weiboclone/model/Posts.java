@@ -28,10 +28,10 @@ public class Posts extends BaseEntity {
     @OneToMany(mappedBy = "posts", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //포스트 삭제시 댓글 삭제
     private List<Comment> comment = new ArrayList<>();
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String image;
 
-    @Column (nullable = false)
+    @Column (nullable = true)
     private String content;
 
     @Column

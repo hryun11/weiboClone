@@ -16,7 +16,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @DynamicUpdate
-@Data
 @Entity
 public class Users extends BaseEntity {
     @Id
