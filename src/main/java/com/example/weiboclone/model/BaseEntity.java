@@ -21,10 +21,10 @@ import java.time.LocalDateTime;
 // @EntityListeners 는 리스너 클래스 지정을 통해 엔티티 객체 상태가 변경될 때 해당 리스너로 콜백을 받는다.
 // AuditingEntityListener 는 JPA 내부에서 엔티티 객체가 생성/변경 되는 것을 감지한다.
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity {
+public abstract class BaseEntity {
     @Column(updatable = false)
     @CreatedDate
-    private LocalDateTime createdAt;
+    private Long createdAt;
 
     @Column(updatable = false)
     @CreatedBy
@@ -32,7 +32,7 @@ public class BaseEntity {
 
     @Column(insertable = false)
     @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private Long updatedAt;
 
     @Column(insertable = false)
     @LastModifiedBy

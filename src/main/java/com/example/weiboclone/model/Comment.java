@@ -32,8 +32,6 @@ public class Comment extends BaseEntity {
     @Column
     private String contents;
 
-    @Column
-    private LocalDateTime createdAt;
 
     public Comment(CommentsRequestsDto requestsDto, Posts posts) {
         this.contents = requestsDto.getContents();

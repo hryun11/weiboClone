@@ -50,15 +50,25 @@ public class PostService {
         Users users = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("없는 회원입니다."));
 
-        String uploadImageUrl = s3Uploader.upload(requestDto.getData(), POST_IMAGE_DIR);
+        if (requestDto.getData() != null) {
+            String uploadImageUrl = s3Uploader.upload(requestDto.getData(), "static");
 
-        Posts post = Posts.builder()
-                .users(users)
-                .content(requestDto.getContents())
-                .image(uploadImageUrl)
-                .build();
+            Posts post = Posts.builder()
+                    .users(users)
+                    .content(requestDto.getContents())
+                    .image(uploadImageUrl)
+                    .build();
 
-        postRepository.save(post);
+            postRepository.save(post);
+        } else {
+            Posts post = Posts.builder()
+                    .users(users)
+                    .content(requestDto.getContents())
+//                    .image(uploadImageUrl)
+                    .build();
+
+            postRepository.save(post);
+        }
     }
 
 
