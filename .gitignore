@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+AwsS3Config.java
+application_aws.yml
+application_aws.yml

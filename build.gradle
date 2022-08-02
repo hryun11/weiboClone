@@ -36,6 +36,18 @@ dependencies {
     // 스프링 시큐리티
     implementation 'org.springframework.boot:spring-boot-starter-security:2.6.7'
     //JWT 라이브러리
+    // Thymeleaf (뷰 템플릿 엔진)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.6.7'
+    // Thymeleaf (뷰 템플릿 엔진)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // Use ConfigurationProperties
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    //aws s3
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.5.RELEASE'
+
+
+
+    //JWT
     implementation "io.jsonwebtoken:jjwt:0.9.1"
     implementation 'com.auth0:java-jwt:3.19.2'
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
