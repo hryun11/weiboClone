@@ -1,7 +1,7 @@
 package com.example.weiboclone.jwt.config.auth;
 
 import com.example.weiboclone.model.Users;
-import com.example.weiboclone.repository.UsersRepository;
+import com.example.weiboclone.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PrincipalDetailsService implements UserDetailsService {
 
-    private final UsersRepository usersRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("PrincipalDetailsService : 진입");
-        Users users = usersRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("없는 회원입니다."));
+        Users users = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("없는 회원입니다."));
 
 
         // session.setAttribute("loginUser", user);

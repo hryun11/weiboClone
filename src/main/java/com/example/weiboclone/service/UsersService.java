@@ -2,10 +2,9 @@ package com.example.weiboclone.service;
 
 import com.example.weiboclone.dto.requestdto.UsersRequestDto;
 import com.example.weiboclone.model.Users;
-import com.example.weiboclone.repository.UsersRepository;
+import com.example.weiboclone.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +19,7 @@ import java.util.regex.Pattern;
 @Service
 public class UsersService {
 
-    private final UsersRepository usersRepository;
+    private final UserRepository userRepository;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -58,11 +57,11 @@ public class UsersService {
             users.setUserProfileImage(profileUrl);
         }
 
-        usersRepository.save(users);
+        userRepository.save(users);
     }
 
     public void checkDuplicateUsername(String username) {
-        Optional<Users> users = usersRepository.findByUsername(username);
+        Optional<Users> users = userRepository.findByUsername(username);
         if (users.isPresent()) {
             throw new IllegalArgumentException("이미 존재하는 계정입니다.");
         }

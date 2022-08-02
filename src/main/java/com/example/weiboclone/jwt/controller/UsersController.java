@@ -1,8 +1,7 @@
 package com.example.weiboclone.jwt.controller;
 
 import com.example.weiboclone.dto.requestdto.UsersRequestDto;
-import com.example.weiboclone.model.Users;
-import com.example.weiboclone.repository.UsersRepository;
+import com.example.weiboclone.repository.UserRepository;
 import com.example.weiboclone.service.UsersService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,7 @@ import java.io.IOException;
 @AllArgsConstructor
 public class UsersController {
 
-    private final UsersRepository usersRepository;
+    private final UserRepository userRepository;
 
     private final UsersService usersService;
 

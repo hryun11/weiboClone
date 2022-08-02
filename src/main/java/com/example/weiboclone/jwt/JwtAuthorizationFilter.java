@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.weiboclone.jwt.config.auth.PrincipalDetails;
 import com.example.weiboclone.model.Users;
-import com.example.weiboclone.repository.UsersRepository;
+import com.example.weiboclone.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,10 +22,10 @@ import java.io.IOException;
 // 만약 권한이나 인증이 필요한 주소가 아니라면 이 필터를 거치지 않는다.
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
-    private UsersRepository usersRepository;
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UsersRepository usersRepository) {
+    private UserRepository userRepository;
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserRepository userRepository) {
         super(authenticationManager);
-        this.usersRepository = usersRepository;
+        this.userRepository = userRepository;
     }
 
     // 인증이나 권한이 필요한 주소 요청이 있을때 해당 필터를 거치게 됨
@@ -52,7 +52,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         // 서명이 정상적으로 됨
         if (username != null) {
 
-            Users usersEntity = usersRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("없는 회원입니다."));
+            Users usersEntity = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("없는 회원입니다."));
 
             PrincipalDetails principalDetails = new PrincipalDetails(usersEntity);
 

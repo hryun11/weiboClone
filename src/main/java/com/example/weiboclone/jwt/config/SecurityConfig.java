@@ -2,7 +2,7 @@ package com.example.weiboclone.jwt.config;
 
 import com.example.weiboclone.jwt.JwtAuthenticationFilter;
 import com.example.weiboclone.jwt.JwtAuthorizationFilter;
-import com.example.weiboclone.repository.UsersRepository;
+import com.example.weiboclone.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +17,7 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CorsFilter corsFilter;
-    private final UsersRepository usersRepository;
+    private final UserRepository userRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().disable()  // jwt 서버라 아이디, 비밀번호 formlogin 안함.
                 .httpBasic().disable()  // 기본적인 http 로그인 방식 안 씀.
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))   // 로그인을 진행하는 필터이기 때문에 AuthenticationManager를 통해서 파라미터를 던져야함
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(), usersRepository))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), userRepository))
                 .authorizeRequests()
                 // ""로 주소가 들어오면
 //                .antMatchers("/api/v1/user/**")
