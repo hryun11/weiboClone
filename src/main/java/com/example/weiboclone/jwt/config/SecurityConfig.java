@@ -2,16 +2,13 @@ package com.example.weiboclone.jwt.config;
 
 import com.example.weiboclone.jwt.JwtAuthenticationFilter;
 import com.example.weiboclone.jwt.JwtAuthorizationFilter;
-import com.example.weiboclone.jwt.repository.UsersRepository;
+import com.example.weiboclone.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration

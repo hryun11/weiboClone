@@ -1,21 +1,26 @@
 package com.example.weiboclone.jwt.controller;
 
-import com.example.weiboclone.jwt.model.Users;
-import com.example.weiboclone.jwt.repository.UsersRepository;
+import com.example.weiboclone.dto.requestdto.UsersRequestDto;
+import com.example.weiboclone.model.Users;
+import com.example.weiboclone.repository.UsersRepository;
+import com.example.weiboclone.service.UsersService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @AllArgsConstructor
-public class RestApiController {
+public class UsersController {
 
     private final UsersRepository usersRepository;
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UsersService usersService;
+
+//    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @GetMapping("home")
@@ -31,11 +36,11 @@ public class RestApiController {
 
 
     // 회원가입
-    @PostMapping("join")
-    public String join(@RequestBody Users users) {
-        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+    @PostMapping("/join")
+    public String join(@RequestBody UsersRequestDto requestDto) throws IOException {
+        usersService.join(requestDto);
+//        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
 //        users.setRoles("ROLE_USER");    // 롤은 기본으로 설정해준다. ROLE_USER로
-        usersRepository.save(users);
         return "회원가입완료";
     }
 

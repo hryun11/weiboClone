@@ -1,4 +1,4 @@
-package com.example.weiboclone.jwt.model;
+package com.example.weiboclone.model;
 
 import com.example.weiboclone.model.BaseEntity;
 import lombok.Data;
@@ -31,7 +31,7 @@ public class Users extends BaseEntity {
     private String password;
 
     @Column
-    private String userprofileimage;
+    private String userProfileImage;
 
 //    @Column
 //    private String roles;
