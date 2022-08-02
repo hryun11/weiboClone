@@ -1,14 +1,18 @@
 package com.example.weiboclone.model;
 
+import com.example.weiboclone.dto.CommentsRequestsDto;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
 @DynamicUpdate
-@Data
+@Getter
+@Setter
 @Entity
 public class Comment extends BaseEntity {
 
@@ -27,4 +31,8 @@ public class Comment extends BaseEntity {
     @Column
     private String contents;
 
+    public Comment(CommentsRequestsDto requestsDto, Posts posts) {
+        this.contents = requestsDto.getContents();
+        this.posts = posts;
+    }
 }
