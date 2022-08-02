@@ -1,16 +1,19 @@
 package com.example.weiboclone.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.weiboclone.dto.PostRequestDto;
+import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
+@NoArgsConstructor (access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @DynamicUpdate
-@Data
+@Builder
+@Getter
+@Setter
 @Entity
 public class Posts extends BaseEntity {
 
@@ -18,17 +21,17 @@ public class Posts extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "users_id")
+    private Users users;
+
     @OneToMany(mappedBy = "posts", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //포스트 삭제시 댓글 삭제
     private List<Comment> comment = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_id")
-    private Users user;
-
-    @Column
+    @Column(nullable = false)
     private String image;
 
-    @Column
+    @Column (nullable = false)
     private String content;
 
     @Column
@@ -39,11 +42,16 @@ public class Posts extends BaseEntity {
 
     public Posts(Long id, Users user, String image, String content, int commentCount) {
         this.id = id;
-        this.user = user;
+        this.users = user;
         this.image = image;
         this.content = content;
         this.commentCount = commentCount;
     }
 
+
     public void addComment(Comment comment) {this.comment.add(comment);} //posts에 contents 내용을 넣어줌.
+
+    public void update(PostRequestDto requestDto) {
+        this.content = requestDto.getContents();
+    }
 }

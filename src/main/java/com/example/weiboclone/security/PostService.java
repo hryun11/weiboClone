@@ -1,47 +1,56 @@
-//package com.example.weiboclone.security;
-//
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//@Service
-//@RequiredArgsConstructor
-//public class PostService {
-//
-//    private final MemberRepository memberRepository;
-//    private final PostRepository postRepository;
-//    private final ImgRepository imgRepository;
-//    private final S3Service s3Service;
-//
-//    // 게시글 작성
-//    @Transactional
-//    public void uploadPost(PostRequestDto res, List<String> imgPaths) {
-//        postBlankCheck(imgPaths);
-//        System.out.println("로그인한 username : " + SecurityUtil.getCurrentUsername());
-//
-//        String username = SecurityUtil.getCurrentUsername();
-//
-//        Member member = memberRepository.findMemberByUsername(username).orElseThrow(
-//                () -> new PrivateException(Code.NOT_FOUND_MEMBER)
-//        );
-//        String content = res.getContent();
-//
-//        Post post = new Post(content, member);
-//        postRepository.save(post);
-//
-//        List<String> imgList = new ArrayList<>();
-//        for (String imgUrl : imgPaths) {
-//            Img img = new Img(imgUrl, post);
-//            imgRepository.save(img);
-//            imgList.add(img.getImgUrl());
-//        }
-//    }
-//
-//    private void postBlankCheck(List<String> imgPaths) {
-//        if(imgPaths == null || imgPaths.isEmpty()){ //.isEmpty()도 되는지 확인해보기
-//            throw new PrivateException(Code.WRONG_INPUT_IMAGE);
-//        }
-//    }
-//}
+package com.example.weiboclone.security;
+
+import com.example.weiboclone.dto.PostRequestDto;
+import com.example.weiboclone.dto.PostResponseDto;
+import com.example.weiboclone.model.Posts;
+import com.example.weiboclone.model.Users;
+import com.example.weiboclone.repository.PostRepository;
+import com.example.weiboclone.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+@Component
+public class PostService {
+
+    private final PostRepository postRepository;
+    private final UserRepository userRepository;
+    private final S3Uploader s3Uploader;
+    private final String POST_IMAGE_DIR = "static";
+
+    // 게시글 작성
+    @Transactional
+    public void createPost(String username, PostRequestDto requestDto) throws IOException {
+        Users users = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("없는 회원입니다."));
+
+        String uploadImageUrl = s3Uploader.upload(requestDto.getData(), POST_IMAGE_DIR);
+
+        Posts post = Posts.builder()
+                .users(users)
+                .content(requestDto.getContents())
+                .image(uploadImageUrl)
+                .build();
+
+        postRepository.save(post);
+    }
+
+
+    // 게시글 상세 조회
+    @Transactional(readOnly = true)
+    public PostResponseDto findById(Long id) {
+        Posts postEntity = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("글이 존재하지 않습니다"));
+
+        return new PostResponseDto(postEntity);
+    }
+}
