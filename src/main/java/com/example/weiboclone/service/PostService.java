@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,12 +45,12 @@ public class PostService {
 
     // 게시글 작성
     @Transactional
-    public void createPost(String username, PostRequestDto requestDto) throws IOException {
+    public void createPost(String username, PostRequestDto requestDto, MultipartFile multipartFile) throws IOException {
         Users users = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("없는 회원입니다."));
 
-        if (requestDto.getData() != null) {
-            String uploadImageUrl = s3Uploader.upload(requestDto.getData(), "static");
+        if (multipartFile != null) {
+            String uploadImageUrl = s3Uploader.upload(multipartFile, "static");
 
             Posts post = Posts.builder()
                     .users(users)
