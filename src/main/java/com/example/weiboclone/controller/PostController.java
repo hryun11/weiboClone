@@ -4,13 +4,11 @@ import com.example.weiboclone.dto.PostRequestDto;
 import com.example.weiboclone.dto.PostResponseDto;
 import com.example.weiboclone.jwt.config.auth.PrincipalDetails;
 import com.example.weiboclone.service.PostService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -38,7 +36,7 @@ public class PostController {
     }
 
     // 개별 게시글 상세 조회
-    @GetMapping("/posts/{id}")
+    @GetMapping("/api/posts/{id}")
     public ResponseEntity<PostResponseDto> getPost(@PathVariable Long id) {
         PostResponseDto dto = postService.findById(id);
 

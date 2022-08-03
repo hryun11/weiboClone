@@ -35,7 +35,7 @@ public class UsersController {
 
 
     // 회원가입
-    @PostMapping("/join")
+    @PostMapping("/api/user/signup")
     public String join(@RequestBody UsersRequestDto requestDto) throws IOException {
         usersService.join(requestDto);
 //        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
