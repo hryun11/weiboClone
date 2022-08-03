@@ -25,6 +25,7 @@ public class Posts extends BaseEntity {
     @JoinColumn(name = "users_id")
     private Users users;
 
+    @Builder.Default
     @OneToMany(mappedBy = "posts", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //포스트 삭제시 댓글 삭제
     private List<Comment> comment = new ArrayList<>();
 
@@ -35,12 +36,13 @@ public class Posts extends BaseEntity {
     private String content;
 
     @Column
-    private int commentCount;
+    private Long commentCount;
 
     @Column
     private int likesCount;
 
-    public Posts(Long id, Users user, String image, String content, int commentCount) {
+
+    public Posts(Long id, Users user, String image, String content, Long commentCount) {
         this.id = id;
         this.users = user;
         this.image = image;

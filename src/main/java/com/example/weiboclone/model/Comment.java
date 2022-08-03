@@ -30,9 +30,19 @@ public class Comment extends BaseEntity {
     @Column
     private String contents;
 
+    @Column
+    private String username;
 
-    public Comment(CommentsRequestsDto requestsDto, Posts posts) {
+    @Column
+    private String userprofileimage;
+
+    @Column
+    private Long postid;
+
+        public Comment(CommentsRequestsDto requestsDto, Users users, Long postid) {
         this.contents = requestsDto.getContents();
-        this.posts = posts;
+        this.username = users.getUsername();
+        this.userprofileimage = users.getUserProfileImage();
+        this.postid = postid;
     }
 }

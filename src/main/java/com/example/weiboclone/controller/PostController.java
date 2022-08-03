@@ -36,7 +36,7 @@ public class PostController {
     }
 
     // 개별 게시글 상세 조회
-    @GetMapping("/api/posts/{id}")
+    @GetMapping("/api/post/{id}")
     public ResponseEntity<PostResponseDto> getPost(@PathVariable Long id) {
         PostResponseDto dto = postService.findById(id);
 
@@ -46,12 +46,12 @@ public class PostController {
     }
 
 
+    // 게시글 전체 조회
     @GetMapping("/api/posts")
     public List<PostResponseDto> getposts(@RequestParam int page,
-                                          @RequestParam int size,
                                           @RequestParam String sortby
     ) {
-        page -= page;
-        return postService.getposts(page, size, sortby);
+        page -= 1;
+        return postService.getposts(page, sortby);
     }
 }
