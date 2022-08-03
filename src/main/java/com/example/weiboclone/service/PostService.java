@@ -45,12 +45,12 @@ public class PostService {
 
     // 게시글 작성
     @Transactional
-    public void createPost(String username, PostRequestDto requestDto, MultipartFile multipartFile) throws IOException {
+    public void createPost(String username, PostRequestDto requestDto) throws IOException {
         Users users = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("없는 회원입니다."));
 
-        if (multipartFile != null) {
-            String uploadImageUrl = s3Uploader.upload(multipartFile, "static");
+        if (requestDto.getData() != null) {
+            String uploadImageUrl = s3Uploader.upload(requestDto.getData(), "static");
 
             Posts post = Posts.builder()
                     .users(users)

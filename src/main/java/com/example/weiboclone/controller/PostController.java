@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,10 +27,9 @@ public class PostController {
     // 게시글 작성
     @PostMapping("/api/post")
     public ResponseEntity<Void> createPost(@RequestBody PostRequestDto requestDto,
-                                           @RequestParam("data") MultipartFile multipartFile,
                                            @AuthenticationPrincipal PrincipalDetails userDetails) throws IOException {
 
-        postService.createPost(userDetails.getUsername(), requestDto, multipartFile);
+        postService.createPost(userDetails.getUsername(), requestDto);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(null);
