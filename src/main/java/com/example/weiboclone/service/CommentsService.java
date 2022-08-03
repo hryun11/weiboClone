@@ -32,9 +32,9 @@ public class CommentsService {
                 () -> new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
         );
         // 요청 받은 dto 로  db 에 객체 만듦
-        Comment comment = new Comment(requestsDto,principalDetails.getUsers(),postid);
+        Comment comment = new Comment(requestsDto,principalDetails.getUsers(),posts);
         commentsRepository.save(comment);
-        CommentsResponseDto responseDto = new CommentsResponseDto(comment.getContents(), comment.getId(), posts);
+        CommentsResponseDto responseDto = new CommentsResponseDto(comment.getContents(), comment.getId(), comment);
         return responseDto;
     }
 }

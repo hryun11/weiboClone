@@ -39,10 +39,10 @@ public class Comment extends BaseEntity {
     @Column
     private Long postid;
 
-        public Comment(CommentsRequestsDto requestsDto, Users users, Long postid) {
+        public Comment(CommentsRequestsDto requestsDto, Users users, Posts posts) {
         this.contents = requestsDto.getContents();
         this.username = users.getUsername();
         this.userprofileimage = users.getUserProfileImage();
-        this.postid = postid;
+        this.postid = posts.getId();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.weiboclone.dto;
 
+import com.example.weiboclone.model.Comment;
 import com.example.weiboclone.model.Posts;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,10 +18,10 @@ public class CommentsResponseDto {
     private Long commentid;
     private LocalDateTime createdAt;
 
-    public CommentsResponseDto(String Contents, Long commentid, Posts posts) {
+    public CommentsResponseDto(String Contents, Long commentid, Comment comment) {
         this.contents = Contents;
-        this.postid = posts.getId();
+        this.postid = comment.getPosts().getId();
         this.commentid = commentid;
-        this.createdAt = posts.getCreatedAt();
+        this.createdAt = comment.getCreatedAt();
     }
 }
