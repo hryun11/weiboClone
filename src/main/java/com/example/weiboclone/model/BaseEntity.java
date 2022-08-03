@@ -1,9 +1,7 @@
 package com.example.weiboclone.model;
 
 import lombok.Getter;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -21,20 +19,15 @@ import java.time.LocalDateTime;
 // @EntityListeners 는 리스너 클래스 지정을 통해 엔티티 객체 상태가 변경될 때 해당 리스너로 콜백을 받는다.
 // AuditingEntityListener 는 JPA 내부에서 엔티티 객체가 생성/변경 되는 것을 감지한다.
 @EntityListeners(AuditingEntityListener.class)
-public abstract class BaseEntity {
+public class BaseEntity {
+
     @Column(updatable = false)
     @CreatedDate
-    private Long createdAt;
+    private LocalDateTime createdAt;
 
-    @Column(updatable = false)
-    @CreatedBy
-    private Long createdBy;
-
+    // insertable : entity 저장 시 이 필드도 같이 저장. false이면 데이터베이스에 저장하지 않고 읽기 전용일 때 사용.
     @Column(insertable = false)
     @LastModifiedDate
-    private Long updatedAt;
-
-    @Column(insertable = false)
-    @LastModifiedBy
-    private Long updatedBy;
+    private LocalDateTime modifiedAt;
 }
+

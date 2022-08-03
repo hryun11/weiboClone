@@ -46,7 +46,6 @@ public class PostController {
     }
 
 
-
     @GetMapping("/api/posts")
     public List<PostResponseDto> getposts(@RequestParam int page,
                                           @RequestParam int size,
