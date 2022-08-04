@@ -28,7 +28,7 @@ public class PostResponseDto {
 
     private Long like;
 
-    private boolean likestate;
+    private int likestate;
 
     public PostResponseDto(Posts posts) {
 
@@ -40,7 +40,7 @@ public class PostResponseDto {
         this.date = posts.getCreatedAt();
         this.commentcount = posts.getCommentcount();
         this.like = posts.getLikescount();
-        this.likestate = posts.isLikestate();
+        this.likestate = posts.getLikestate();
     }
 
 //    @Data

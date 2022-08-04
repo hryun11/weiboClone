@@ -41,8 +41,7 @@ public class Posts extends BaseEntity {
     private Long likescount;
 
     @Column
-    @Builder.Default
-    private boolean likestate = false;
+    private int likestate;
 
 
     public Posts(Long id, Users user, String image, String content, Long commentCount) {
@@ -57,9 +56,8 @@ public class Posts extends BaseEntity {
     public void minuslikecnt() {
         this.likescount -= 1;
     }
-    public void likestate(boolean push) {
-        this.likestate = push;
-    }
+    public void likestate(int push) {
+        this.likestate = push;    }
     public void pluslikecnt() {
         this.likescount += 1;
     }
