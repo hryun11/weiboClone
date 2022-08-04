@@ -33,8 +33,10 @@ public class CommentsService {
         );
         // 요청 받은 dto 로  db 에 객체 만듦
         Comment comment = new Comment(requestsDto,principalDetails.getUsers(),posts);
+        System.out.println(comment);
         commentsRepository.save(comment);
-        CommentsResponseDto responseDto = new CommentsResponseDto(comment.getContents(), comment.getId(), comment);
+        CommentsResponseDto responseDto = new CommentsResponseDto(comment.getContents(),comment);
         return responseDto;
+
     }
 }

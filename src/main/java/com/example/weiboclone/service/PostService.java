@@ -17,7 +17,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,9 +47,8 @@ public class PostService {
     public void createPost(String username, PostRequestDto requestDto) throws IOException {
         Users users = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("없는 회원입니다."));
-
         if (requestDto.getData() != null) {
-            String uploadImageUrl = s3Uploader.upload(requestDto.getData(), "static");
+            String uploadImageUrl = s3Uploader.upload(requestDto.getData(), POST_IMAGE_DIR);
 
             Posts post = Posts.builder()
                     .users(users)

@@ -26,7 +26,7 @@ public class PostController {
 
     // 게시글 작성
     @PostMapping("/api/post")
-    public ResponseEntity<Void> createPost(@RequestBody PostRequestDto requestDto,
+    public ResponseEntity<Void> createPost(@ModelAttribute PostRequestDto requestDto,
                                            @AuthenticationPrincipal PrincipalDetails userDetails) throws IOException {
 
         postService.createPost(userDetails.getUsername(), requestDto);

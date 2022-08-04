@@ -1,7 +1,6 @@
 package com.example.weiboclone.dto;
 
 import com.example.weiboclone.model.Comment;
-import com.example.weiboclone.model.Posts;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,13 +14,13 @@ public class CommentsResponseDto {
     private String userprofileimage;
     private String contents;
     private Long postid;
-    private Long commentid;
+    private Long id;
     private LocalDateTime createdAt;
 
-    public CommentsResponseDto(String Contents, Long commentid, Comment comment) {
-        this.contents = Contents;
+    public CommentsResponseDto(String contents, Comment comment) {
+        this.contents = contents;
         this.postid = comment.getPosts().getId();
-        this.commentid = commentid;
+        this.id = comment.getId();
         this.createdAt = comment.getCreatedAt();
     }
 }

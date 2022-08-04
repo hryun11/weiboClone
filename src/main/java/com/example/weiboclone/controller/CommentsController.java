@@ -25,8 +25,8 @@ public class CommentsController {
 
     // 댓글 작성
     @PostMapping("/api/post/{postid}/comment")
-    public CommentsResponseDto createComments(@PathVariable Long postid, @RequestBody CommentsRequestsDto requestsDto,
+    public void createComments(@PathVariable Long postid, @RequestBody CommentsRequestsDto requestsDto,
                                               @AuthenticationPrincipal PrincipalDetails userDetails) {
-        return commentsService.createComments(postid, requestsDto, userDetails);
+       commentsService.createComments(postid, requestsDto, userDetails);
     }
 }
