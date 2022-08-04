@@ -83,8 +83,9 @@ public class PostService {
         public List<PostResponseDto> getposts(int page, String sortby) {
             // page 함수
             Sort.Direction direction = Sort.Direction.DESC;
+//            String  sortby = "createdAt";
             Sort sort = Sort.by(direction, sortby);
-            //page = 0;
+//            int page = 0;
             int size = 10;
             Pageable pageable = PageRequest.of(page, size, sort);
 

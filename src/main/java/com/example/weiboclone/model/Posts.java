@@ -36,10 +36,10 @@ public class Posts extends BaseEntity {
     private String content;
 
     @Column
-    private Long commentCount;
+    private Long commentCount = 0L;
 
     @Column
-    private int likesCount;
+    private Long likesCount;
 
 
     public Posts(Long id, Users user, String image, String content, Long commentCount) {
