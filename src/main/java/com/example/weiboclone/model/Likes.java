@@ -1,6 +1,6 @@
 package com.example.weiboclone.model;
 
-import com.example.weiboclone.dto.LIkeDto;
+import com.example.weiboclone.dto.requestdto.LIkeDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;

@@ -1,6 +1,6 @@
 package com.example.weiboclone.controller;
 
-import com.example.weiboclone.dto.CommentsRequestsDto;
+import com.example.weiboclone.dto.requestdto.CommentsRequestsDto;
 import com.example.weiboclone.jwt.config.auth.PrincipalDetails;
 import com.example.weiboclone.model.Comment;
 import com.example.weiboclone.service.CommentsService;

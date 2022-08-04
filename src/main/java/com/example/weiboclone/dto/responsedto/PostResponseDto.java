@@ -1,4 +1,4 @@
-package com.example.weiboclone.dto;
+package com.example.weiboclone.dto.responsedto;
 
 import com.example.weiboclone.model.Posts;
 import lombok.AllArgsConstructor;
@@ -24,9 +24,11 @@ public class PostResponseDto {
 
     private LocalDateTime date;
 
-    private Long commentCount;
+    private Long commentcount;
 
     private Long like;
+
+    private boolean likestate;
 
     public PostResponseDto(Posts posts) {
 
@@ -36,8 +38,9 @@ public class PostResponseDto {
         this.profileimage = posts.getUsers().getUserProfileImage();
         this.images = posts.getImage();
         this.date = posts.getCreatedAt();
-        this.commentCount = posts.getCommentCount();
-        this.like = posts.getLikesCount();
+        this.commentcount = posts.getCommentcount();
+        this.like = posts.getLikescount();
+        this.likestate = posts.isLikestate();
     }
 
 //    @Data

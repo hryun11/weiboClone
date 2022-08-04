@@ -110,6 +110,7 @@ public class PostService {
                 () -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다.")
         );
         posts.minuslikecnt();
+        posts.likestate(false);
     }
 
     public void pluslikecnt(Long postId) {
@@ -117,5 +118,6 @@ public class PostService {
                 () -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다.")
         );
         posts.pluslikecnt();
+        posts.likestate(true);
     }
 }

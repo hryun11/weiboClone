@@ -1,7 +1,6 @@
 package com.example.weiboclone.controller;
 
-import com.amazonaws.services.ec2.model.PricingDetail;
-import com.example.weiboclone.dto.LIkeDto;
+import com.example.weiboclone.dto.requestdto.LIkeDto;
 import com.example.weiboclone.jwt.config.auth.PrincipalDetails;
 import com.example.weiboclone.service.LikeService;
 import lombok.RequiredArgsConstructor;

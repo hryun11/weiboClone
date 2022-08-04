@@ -1,4 +1,4 @@
-package com.example.weiboclone.dto;
+package com.example.weiboclone.dto.responsedto;
 
 import com.example.weiboclone.model.Comment;
 import lombok.Getter;

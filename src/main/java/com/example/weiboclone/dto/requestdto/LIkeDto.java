@@ -1,4 +1,4 @@
-package com.example.weiboclone.dto;
+package com.example.weiboclone.dto.requestdto;
 
 import lombok.Getter;
 

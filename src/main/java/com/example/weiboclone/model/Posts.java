@@ -36,10 +36,13 @@ public class Posts extends BaseEntity {
     private String content;
 
     @Column
-    private Long commentCount;
+    private Long commentcount;
 
     @Column
-    private Long likesCount;
+    private Long likescount;
+
+    @Column
+    private boolean likestate;
 
 
     public Posts(Long id, Users user, String image, String content, Long commentCount) {
@@ -47,21 +50,19 @@ public class Posts extends BaseEntity {
         this.users = user;
         this.image = image;
         this.content = content;
-        this.commentCount = commentCount;
+        this.commentcount = commentCount;
     }
 
-
-    public void addComment(Comment comment) {this.comment.add(comment);} //posts에 contents 내용을 넣어줌.
-
-    public void update(PostRequestDto requestDto) {
-        this.content = requestDto.getContents();
-    }
 
     public void minuslikecnt() {
-        this.likesCount -= 1;
+        this.likescount -= 1;
+    }
+    public void likestate(boolean push) {
+        this.likestate = push;
+
     }
 
     public void pluslikecnt() {
-        this.likesCount += 1;
+        this.likescount += 1;
     }
 }

@@ -1,8 +1,8 @@
 package com.example.weiboclone.service;
 
-import com.example.weiboclone.dto.LIkeDto;
+import com.example.weiboclone.dto.requestdto.LIkeDto;
 import com.example.weiboclone.model.Likes;
-import com.example.weiboclone.repository.LIkeRepository;
+import com.example.weiboclone.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class LikeService {
 
-    private final LIkeRepository lIkeRepository;
+    private final LikeRepository lIkeRepository;
     private final PostService postService;
 
     @Transactional

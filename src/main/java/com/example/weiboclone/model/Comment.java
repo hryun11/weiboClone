@@ -1,6 +1,6 @@
 package com.example.weiboclone.model;
 
-import com.example.weiboclone.dto.CommentsRequestsDto;
+import com.example.weiboclone.dto.requestdto.CommentsRequestsDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
