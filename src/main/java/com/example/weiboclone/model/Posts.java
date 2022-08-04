@@ -1,6 +1,5 @@
 package com.example.weiboclone.model;
 
-import com.example.weiboclone.dto.requestdto.PostRequestDto;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -42,7 +41,8 @@ public class Posts extends BaseEntity {
     private Long likescount;
 
     @Column
-    private boolean likestate;
+    @Builder.Default
+    private boolean likestate = false;
 
 
     public Posts(Long id, Users user, String image, String content, Long commentCount) {
@@ -59,9 +59,7 @@ public class Posts extends BaseEntity {
     }
     public void likestate(boolean push) {
         this.likestate = push;
-
     }
-
     public void pluslikecnt() {
         this.likescount += 1;
     }

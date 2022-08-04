@@ -36,7 +36,3 @@ out/
 ### VS Code ###
 .vscode/
 AwsS3Config.java
-application_aws.yml
-application.properties
-application.yml
-application-aws.yml

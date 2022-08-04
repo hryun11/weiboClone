@@ -75,7 +75,7 @@ public class PostService {
         Posts postEntity = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("글이 존재하지 않습니다"));
         Long commentCount = (long) commentsRepository.findByPosts(postEntity).size();
-        postEntity.setCommentCount(commentCount);
+        postEntity.setCommentcount(commentCount);
         return new PostResponseDto(postEntity);
     }
 
@@ -96,7 +96,7 @@ public class PostService {
         for (Posts post : slicePostList) {
             // PostsResponseDto 에 전체 게시물을 순차적으로 대입 후 responseDtoList 에 추가
             Long commentCount = (long) commentsRepository.findByPosts(post).size();
-            post.setCommentCount(commentCount);
+            post.setCommentcount(commentCount);
 
             PostResponseDto responseDto = findById(post.getId());
             responseDtoList.add(responseDto);
