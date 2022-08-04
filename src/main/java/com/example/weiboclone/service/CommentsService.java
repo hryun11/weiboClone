@@ -1,7 +1,6 @@
 package com.example.weiboclone.service;
 
-import com.example.weiboclone.dto.CommentsRequestsDto;
-import com.example.weiboclone.dto.CommentsResponseDto;
+import com.example.weiboclone.dto.requestdto.CommentsRequestsDto;
 import com.example.weiboclone.jwt.config.auth.PrincipalDetails;
 import com.example.weiboclone.model.Comment;
 import com.example.weiboclone.model.Posts;
@@ -22,7 +21,7 @@ public class CommentsService {
 
     // 댓글 조회
     public List<Comment> getComments(Long postid) {
-        return commentsRepository.findAllByPostsIdOrderByCreatedAtDesc(postid);
+        return commentsRepository.findAllByPostidOrderByCreatedAtDesc(postid);
     }
 
     // 댓글 작성

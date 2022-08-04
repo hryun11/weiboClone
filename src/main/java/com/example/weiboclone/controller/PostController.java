@@ -1,7 +1,7 @@
 package com.example.weiboclone.controller;
 
-import com.example.weiboclone.dto.PostRequestDto;
-import com.example.weiboclone.dto.PostResponseDto;
+import com.example.weiboclone.dto.requestdto.PostRequestDto;
+import com.example.weiboclone.dto.responsedto.PostResponseDto;
 import com.example.weiboclone.jwt.config.auth.PrincipalDetails;
 import com.example.weiboclone.service.PostService;
 import org.springframework.context.annotation.Lazy;

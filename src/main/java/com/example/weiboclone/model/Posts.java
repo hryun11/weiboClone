@@ -1,6 +1,6 @@
 package com.example.weiboclone.model;
 
-import com.example.weiboclone.dto.PostRequestDto;
+import com.example.weiboclone.dto.requestdto.PostRequestDto;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -55,5 +55,13 @@ public class Posts extends BaseEntity {
 
     public void update(PostRequestDto requestDto) {
         this.content = requestDto.getContents();
+    }
+
+    public void minuslikecnt() {
+        this.likesCount -= 1;
+    }
+
+    public void pluslikecnt() {
+        this.likesCount += 1;
     }
 }
