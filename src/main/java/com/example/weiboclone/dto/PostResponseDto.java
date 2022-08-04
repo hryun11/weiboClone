@@ -1,12 +1,10 @@
 package com.example.weiboclone.dto;
 
 import com.example.weiboclone.model.Posts;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,30 +12,32 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PostResponseDto {
 
-    private Long id;
+    private Long postid;
+
     private String contents;
+
     private String username;
-    private String imageFileName;
 
-    private String uploadImageUrl;
+    private String profileimage;
 
-    private LocalDateTime createdAt;
+    private String images;
+
+    private LocalDateTime date;
 
     private Long commentCount;
 
-    private Long likesCount;
+    private Long like;
 
     public PostResponseDto(Posts posts) {
 
-        this.id = posts.getId();
+        this.postid = posts.getId();
         this.contents = posts.getContent();
         this.username = posts.getUsers().getUsername();
-        this.imageFileName = posts.getImage();
-        this.uploadImageUrl = posts.getImage();
-        this.createdAt = posts.getCreatedAt();
+        this.profileimage = posts.getUsers().getUserProfileImage();
+        this.images = posts.getImage();
+        this.date = posts.getCreatedAt();
         this.commentCount = posts.getCommentCount();
-        this.likesCount = posts.getLikesCount();
-        this.username = posts.getUsers().getUsername();
+        this.like = posts.getLikesCount();
     }
 
 //    @Data

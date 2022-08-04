@@ -4,10 +4,7 @@ import com.example.weiboclone.dto.requestdto.UsersRequestDto;
 import com.example.weiboclone.repository.UserRepository;
 import com.example.weiboclone.service.UsersService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -36,7 +33,7 @@ public class UsersController {
 
     // 회원가입
     @PostMapping("/api/user/signup")
-    public String join(@RequestBody UsersRequestDto requestDto) throws IOException {
+    public String join(@ModelAttribute UsersRequestDto requestDto) throws IOException {
         usersService.join(requestDto);
 //        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
 //        users.setRoles("ROLE_USER");    // 롤은 기본으로 설정해준다. ROLE_USER로
