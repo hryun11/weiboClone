@@ -48,9 +48,7 @@ public class PostController {
 
     // 게시글 전체 조회
     @GetMapping("/api/posts")
-    public List<PostResponseDto> getposts(@RequestParam int page,
-                                          @RequestParam String sortby
-    ) {
+    public List<PostResponseDto> getposts(@RequestParam int page, @RequestParam String sortby) {
         page -= 1;
         return postService.getposts(page, sortby);
     }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,12 +19,13 @@ public class PostResponseDto {
     private String username;
     private String imageFileName;
 
-    @JsonProperty(value = "writer")
-    private PostUserInfo userInfo;
-
     private String uploadImageUrl;
 
     private LocalDateTime createdAt;
+
+    private Long commentCount;
+
+    private Long likesCount;
 
     public PostResponseDto(Posts posts) {
 
@@ -33,15 +35,17 @@ public class PostResponseDto {
         this.imageFileName = posts.getImage();
         this.uploadImageUrl = posts.getImage();
         this.createdAt = posts.getCreatedAt();
+        this.commentCount = posts.getCommentCount();
+        this.likesCount = posts.getLikesCount();
+        this.username = posts.getUsers().getUsername();
     }
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    static class PostUserInfo {
-
-        private String nickname;
-        private String username;
-        private String profile;
-    }
+//    @Data
+//    @NoArgsConstructor
+//    @AllArgsConstructor
+//    static class PostUserInfo {
+//
+//        private String username;
+//        private String profile;
+//    }
 }

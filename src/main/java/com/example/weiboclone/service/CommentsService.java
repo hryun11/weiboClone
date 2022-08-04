@@ -27,7 +27,7 @@ public class CommentsService {
 
     // 댓글 작성
     @Transactional
-    public CommentsResponseDto createComments(Long postid, CommentsRequestsDto requestsDto, PrincipalDetails principalDetails) {
+    public void createComments(Long postid, CommentsRequestsDto requestsDto, PrincipalDetails principalDetails) {
         Posts posts = postRepository.findById(postid).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
         );
@@ -35,8 +35,8 @@ public class CommentsService {
         Comment comment = new Comment(requestsDto,principalDetails.getUsers(),posts);
         System.out.println(comment);
         commentsRepository.save(comment);
-        CommentsResponseDto responseDto = new CommentsResponseDto(comment.getContents(),comment);
-        return responseDto;
+//        CommentsResponseDto responseDto = new CommentsResponseDto(comment.getContents(),comment);
+//        return responseDto;
 
     }
 }
